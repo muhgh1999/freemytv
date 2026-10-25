@@ -1,0 +1,12 @@
+window.CFG={
+ city:'الدمام',lat:26.4207,lon:50.0888,
+ apps:[
+  {n:'YouTube',p:'com.google.android.youtube.tv'},
+  {n:'Arena',p:''},
+  {n:'ثمانية',p:''},
+  {n:'Nuvio',p:''},
+  {n:'Stremio',p:'com.stremio.one'},
+  {n:'Netflix',p:'com.netflix.ninja'}
+ ],
+ traktId:'KZUw4ph0K34OjOe8hNK2-iqpFRf2k1cnRkyycO0xUNA',traktSecret:''
+};

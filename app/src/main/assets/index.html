@@ -1,0 +1,104 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Free My TV</title>
+<script src="config.js"></script>
+<style>
+:root{--g:#f1c08e;--c:rgba(18,20,22,.76);--l:rgba(255,255,255,.26)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:1.1vw}
+body{width:100vw;height:100vh;overflow:hidden;background:#111;color:#fff;font-family:"Noto Naskh Arabic","Noto Sans Arabic","Droid Arabic Naskh",sans-serif}
+#bg{position:fixed;inset:0;background:url(bg.jpg) center/cover,linear-gradient(#a39a96,#b7806a 40%,#6a3f33 62%,#1a1110)}
+#bg svg{position:absolute;bottom:0;left:0;width:100%;height:58%}
+#bg:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.7))}
+.page{position:absolute;inset:0;display:none}
+.page.on{display:block}
+.abs{position:absolute}
+.card{position:relative;background:var(--c);border:1px solid var(--l);border-radius:1.6rem;padding:1.4rem 1.8rem;overflow:hidden}
+.dock{display:flex;gap:1rem;padding:1rem;border:1px solid var(--l);border-radius:2.2rem;background:rgba(14,16,17,.74);position:absolute;left:3.6rem;right:3.6rem}
+#p1 .dock,#p5 .dock{bottom:4rem}
+#p2 .dock,#p3 .dock{top:6.5rem}
+.tile{flex:1;height:6rem;border-radius:1.2rem;background:rgba(10,12,13,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;font:700 1.35rem sans-serif}
+.tile i{font-style:normal;color:var(--g);font-size:1.1rem}
+.pill{display:inline-block;padding:.8rem 1.6rem;border-radius:1rem;background:var(--g);color:#2a1a10;font-size:1.25rem;font-weight:700}
+.btns{position:absolute;left:3.6rem;right:3.6rem;top:17rem;display:flex;gap:1rem}
+.f{transition:transform .12s}
+.f.focus{outline:.2rem solid var(--g);outline-offset:.15rem;transform:scale(1.04);box-shadow:0 0 1.6rem rgba(241,192,142,.45)}
+.title{left:3.6rem;top:3.4rem;font:700 1.8rem sans-serif}
+.rt{right:3.6rem;top:3rem;text-align:right}
+.rt .d{font-size:1.5rem}
+.clk{font-size:11rem;line-height:1.15}
+.clk small{font-size:2rem;margin-inline-start:.6rem}
+.wx{font-size:1.4rem}
+.g,.top h2,h3,.when,.mu{color:var(--g)}
+.hl{display:none}#p5 .hl{display:inline}
+.cd{position:absolute;left:3.6rem;top:27rem;width:21rem;padding:1.1rem 1.6rem}
+.cd small{display:block;font-size:1.05rem}
+.cd b{font-size:2.4rem}
+.top{position:absolute;left:3.6rem;right:3.6rem;top:3.2rem;display:flex;justify-content:space-between;font-size:1.35rem}
+.top h2{font-size:1.9rem;font-weight:400}
+.two{position:absolute;left:3.6rem;right:3.6rem;bottom:3.6rem;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+#p2 .two{height:17rem}#p3 .two{top:17rem}
+h3{font-size:1.9rem;font-weight:400;margin-bottom:.6rem}
+.hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.6rem}.hd small{font-size:1rem}.hd h3,.hd h2{margin:0}
+.big{font-size:4.6rem;line-height:1.2}
+.pr{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--l);font-size:1.35rem}
+.pr.nx{color:var(--g)}
+.mr{display:flex;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--l);font-size:1.3rem}
+.mr .tm{flex:1;text-align:center;color:var(--g);font-size:1.1rem}
+.tmn{display:flex;align-items:center;gap:.7rem;min-width:11rem}
+.bd{position:relative;width:2.8rem;height:2.8rem;border-radius:50%;background:#e9d8c0;color:#3a2a1a;font:700 1.1rem sans-serif;display:flex;align-items:center;justify-content:center}
+.bd img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:#fff;object-fit:contain}
+.ep{display:flex;align-items:center;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--l)}
+.ps{width:4.6rem;height:6rem;border-radius:.6rem;background:linear-gradient(#5b6b66,#c9935e);display:flex;align-items:center;justify-content:center;font:700 .85rem sans-serif;text-align:center}
+.ei{flex:1;display:flex;flex-direction:column}.ei b{font-size:1.4rem}.ei small{font-size:1rem}
+.mu{font-size:1.1rem}
+#lgt{position:absolute;right:3.6rem;left:3.6rem;top:8rem;display:flex;gap:2.2rem;border-bottom:1px solid var(--l);padding-bottom:.5rem}
+.lt{padding:.5rem .6rem;font-size:1.25rem}.lt.sel{color:var(--g);border-bottom:.15rem solid var(--g)}
+#tbl{position:absolute;left:3.6rem;right:3.6rem;top:12rem;bottom:4.2rem}
+.tr{display:grid;grid-template-columns:3rem 1fr repeat(5,7rem);padding:.28rem 0;border-bottom:1px solid var(--l);font-size:1.2rem}
+.th{color:var(--g);font-size:1rem}
+.nx2{position:absolute;left:3.6rem;bottom:9rem;padding:.8rem 1.4rem;border-radius:1.2rem;background:var(--c);font-size:1.3rem}.nx2 b{color:var(--g)}
+#dots{position:fixed;left:2.6rem;bottom:1rem;font-size:.9rem;opacity:.85}
+#pick{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center}
+#pick.on{display:flex}
+#pick .card{width:34rem;background:#181a1c}
+#pick .list{max-height:30rem;overflow-y:auto;margin-top:.6rem}
+.pi{padding:.7rem 1.1rem;font-size:1.35rem;border-radius:.8rem}
+</style></head><body>
+<div id="bg"><svg viewBox="0 0 1000 400" preserveAspectRatio="none"><path d="M0 400V250L120 190 220 230 330 150 430 210 520 120 600 80 690 130 780 100 880 170 1000 120V400Z" fill="#2a1b17" opacity=".75"/><path d="M0 400V300L150 260 300 300 450 270 600 310 760 250 900 290 1000 260V400Z" fill="#150d0b"/></svg></div>
+
+<div id="p1" class="page">
+ <div class="abs title">Free My TV</div>
+ <div class="abs rt"><div class="d t-date"></div><div class="clk"><span class="t-clock"></span><small class="t-ap"></small></div><div class="wx t-wx"></div></div>
+ <div class="card cd"><small class="cd-t"></small><b class="cd-d"></b></div>
+ <div class="dock row"></div>
+</div>
+
+<div id="p2" class="page">
+ <div class="top"><h2>مساحتك اليومية</h2><span class="t-dt"></span></div>
+ <div class="dock row"></div>
+ <div class="btns row">
+  <div class="f pill" data-a="in" data-v="tv">التلفزيون</div><div class="f pill" data-a="in" data-v="hdmi1">HDMI 1</div><div class="f pill" data-a="in" data-v="hdmi2">HDMI 2</div><div class="f pill" data-a="all">كل التطبيقات</div><div class="f pill" data-a="set">إعدادات التلفزيون</div>
+ </div>
+ <div class="two"><div class="card" id="wxc"></div><div class="card"><h3>أوقات الصلاة</h3><div id="pl"></div></div></div>
+</div>
+
+<div id="p3" class="page">
+ <div class="top"><h2>صفحتك</h2><span class="t-dt"></span></div>
+ <div class="dock row"></div>
+ <div class="two"><div class="card" id="mt"></div><div class="card" id="eps"></div></div>
+</div>
+
+<div id="p4" class="page">
+ <div class="top"><span class="mu">صفحة مستقلة · ٤ / ٤</span><h2>ترتيب الدوريات</h2></div>
+ <div id="lgt" class="row"></div>
+ <div id="tbl" class="card"></div>
+</div>
+
+<div id="p5" class="page">
+ <div class="abs rt"><div class="d t-date"></div><div class="clk"><span class="t-clock"></span><small class="t-ap"></small></div><div class="wx t-wx"></div></div>
+ <div class="abs nx2 nx"></div>
+</div>
+
+<div id="pick"><div class="card"><h2></h2><div class="list"></div></div></div>
+<div id="dots"></div>
+<script src="app.js"></script>
+</body></html>
